@@ -36,10 +36,7 @@ const startTeam = () => {
     // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
     .then((response) => {
         // START TEST CODE
-        console.log(`mgrName: ${response.mgrName} 
-                    mgrEmployeeID: ${response.mgrEmployeeID} 
-                    mgrEmailAddress: ${response.mgrEmailAddress} 
-                    mgrOfficeNbr: ${response.mgrOfficeNbr}`)
+        console.log(`mgrName: ${response.mgrName} \nmgrEmployeeID: ${response.mgrEmployeeID} \nmgrEmailAddress: ${response.mgrEmailAddress} \nmgrOfficeNbr: ${response.mgrOfficeNbr}`)
         // END TEST CODE                    
         if (response.addTeamMember === 'Engineer') {
         // call addEngineer()
@@ -48,6 +45,7 @@ const startTeam = () => {
       } else {
         // Build HTML with objects created during inquirer prompts
         // call buildHTML()
+
       };
 
     });
