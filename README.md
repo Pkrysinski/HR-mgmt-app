@@ -6,8 +6,11 @@ The purpose of our app is to demonstrate our knowledge of NodeJS, OOP (Object Or
 
 ## Educational Concepts Implemented
 >Node JS
+
 >OOP
+
 >HTML & CSS
+
 >TDD (Test-Driven Development)
 
 ## Walkthrough Video
