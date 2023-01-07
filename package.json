@@ -1,0 +1,23 @@
+{
+  "name": "hr-mgmt-app",
+  "version": "1.0.0",
+  "description": "The purpose of our app is to demonstrate our knowledge of NodeJS, OOP (Object Oriented Porogramming), and applying those concepts towards making a web application.  The application will act as a basic HR (Human Resources) management software which can help track current employees on a theoretical team.  The app will take in information about employees on a software development team via a NodeJS app, and then generate an HTML file with summaries for each employee with information based on submitted text. There will be 3 types of personnel that can be entered; Manager, Engineer, and Intern.  Depending on the position being submitted will send different questions to the user to answer about the individual being entered.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pkrysinski/HR-mgmt-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pkrysinski/HR-mgmt-app/issues"
+  },
+  "homepage": "https://github.com/Pkrysinski/HR-mgmt-app#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
