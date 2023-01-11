@@ -2,6 +2,33 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+const builtTeamFinal = [];
+
+const generateHTML = (builtTeamFinal) =>
+`<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Team</title>
+  <link rel="stylesheet" href="jass.css" />
+</head>
+<body>
+  <div class="container pad-container">
+    <div className="card bg-white card-rounded w-25">
+      <div className="card-header bg-dark text-center">
+        <h1>My Team!</h1>
+      </div>
+      <div className="card-body m-5" id="teamCards">
+        <!-- employee cards here -->
+      </div>
+    </div>
+    <script src="./index.js"></script>
+  </div>
+</body>
+</html>
+`;
+
 // User Inquirer to prompt user (in terminal via NodeJS) for answers based on questions about subjects in the standard README file template
 const startTeam = () => {
     inquirer
@@ -36,7 +63,8 @@ const startTeam = () => {
     // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
     .then((response) => {
         // START TEST CODE
-        console.log(`mgrName: ${response.mgrName} \nmgrEmployeeID: ${response.mgrEmployeeID} \nmgrEmailAddress: ${response.mgrEmailAddress} \nmgrOfficeNbr: ${response.mgrOfficeNbr}`)
+        builtTeamFinal.push(response);
+        console.log(builtTeamFinal);
         // END TEST CODE                    
         if (response.addTeamMember === 'Engineer') {
           addEngineer();
@@ -44,9 +72,8 @@ const startTeam = () => {
           addIntern();
       } else {
         // Build HTML with objects created during inquirer prompts
-        // call buildHTML()
+        finishTeam();
       };
-
     });
 };
 
@@ -83,8 +110,8 @@ const addEngineer = () => {
   // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
   .then((response) => {
       // START TEST CODE
-      console.log("Engineer added!");
-      console.log(`engName: ${response.engName} \nengEmployeeID: ${response.engEmployeeID} \nengEmailAddress: ${response.engEmailAddress} \nmgrengGitHub: ${response.engGitHub}`)
+      builtTeamFinal.push(response);
+      console.log(builtTeamFinal);
       // END TEST CODE 
       if (response.addTeamMember === 'Engineer') {
         addEngineer();
@@ -92,9 +119,8 @@ const addEngineer = () => {
         addIntern();
     } else {
       // Build HTML with objects created during inquirer prompts
-      // call buildHTML()
+      finishTeam();
     };
-
   });
 };
 
@@ -131,8 +157,8 @@ const addIntern = () => {
   // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
   .then((response) => {
       // START TEST CODE
-      console.log("Intern added!");
-      console.log(`intName: ${response.intName} \nintEmployeeID: ${response.intEmployeeID} \nintEmailAddress: ${response.intEmailAddress} \nmgrintSchool: ${response.intSchool}`)
+      builtTeamFinal.push(response);
+      console.log(builtTeamFinal);
       // END TEST CODE 
       if (response.addTeamMember === 'Engineer') {
         addEngineer();
@@ -140,11 +166,19 @@ const addIntern = () => {
         addIntern();
     } else {
       // Build HTML with objects created during inquirer prompts
-      // call buildHTML()
+      finishTeam();
     };
-
   });
 };
 
-startTeam();
+const finishTeam = () => {
 
+  console.log(builtTeamFinal);
+
+  const htmlPageContent = generateHTML(builtTeamFinal);
+  fs.writeFile('indexNew.html', htmlPageContent, (err) =>
+  err ? console.error(err) : console.log('Success!'));
+
+};
+
+startTeam();
