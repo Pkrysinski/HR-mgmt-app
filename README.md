@@ -37,12 +37,12 @@ THEN an HTML file is generated that displays a nicely formatted team roster base
 - - - - -
 WHEN I click on an email address in the HTML,
 THEN my default email program opens and populates the TO field of the email with the address.
->
+>IN-PROGRESS: This is the last part of the project I'm concerned about (besides tests).  Know I need to loop through the array of objects already created and inject the HTML with their key/value properties based on the objects generated throughout the user prompts.
 
 - - - - -
 WHEN I click on the GitHub username,
 THEN that GitHub profile opens in a new tab.
->
+>IN-PROGRESS
 
 - - - - -
 WHEN I start the application,
@@ -67,5 +67,5 @@ THEN I am prompted to enter the intern’s name, ID, email, and school, and I am
 - - - - -
 WHEN I decide to finish building my team,
 THEN I exit the application, and the HTML is generated.
->IN-PROGRESS
+>Done.
 
