@@ -1,6 +1,9 @@
 // Initialize variables for Inquirer and File System
 const inquirer = require('inquirer');
 const fs = require('fs');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 const builtTeamFinal = [];
 
@@ -29,29 +32,29 @@ const generateHTML = (builtTeamFinal) =>
 </html>
 `;
 
-// User Inquirer to prompt user (in terminal via NodeJS) for answers based on questions about subjects in the standard README file template
+// User Inquirer to prompt user (in terminal via NodeJS) for answers based on questions about subjects in the standard HTML file template
 const startTeam = () => {
     inquirer
     .prompt([
       {
       type: 'input',
       message: 'Hello, manager, and welcome to the HR Management App! \n What is your name?',
-      name: 'mgrName',
+      name: 'name',
       },
       {
       type: 'input',
       message: 'What is your employee ID?',
-      name: 'mgrEmployeeID',
+      name: 'id',
       },
       {
       type: 'input',
       message: 'What is your email address?',
-      name: 'mgrEmailAddress',
+      name: 'email',
       },
       {
       type: 'input',
       message: 'What office number are you in?',
-      name: 'mgrOfficeNbr',
+      name: 'officeNumber',
       },
       {
       type: 'list',
@@ -62,10 +65,11 @@ const startTeam = () => {
     ])
     // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
     .then((response) => {
-        // START TEST CODE
-        builtTeamFinal.push(response);
-        console.log(builtTeamFinal);
-        // END TEST CODE                    
+
+        let newManager = new Manager(response.name,response.id,response.email,response.officeNumber);
+
+        builtTeamFinal.push(newManager);
+            
         if (response.addTeamMember === 'Engineer') {
           addEngineer();
       } else if (response.addTeamMember === 'Intern') {
@@ -83,22 +87,22 @@ const addEngineer = () => {
     {
     type: 'input',
     message: 'Please enter the name of the engineer being entered!',
-    name: 'engName',
+    name: 'name',
     },
     {
     type: 'input',
     message: 'What is your employee ID?',
-    name: 'engEmployeeID',
+    name: 'id',
     },
     {
     type: 'input',
     message: 'What is your email address?',
-    name: 'engEmailAddress',
+    name: 'email',
     },
     {
     type: 'input',
     message: 'What is your github user name?',
-    name: 'engGitHub',
+    name: 'github',
     },
     {
     type: 'list',
@@ -109,10 +113,11 @@ const addEngineer = () => {
   ])
   // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
   .then((response) => {
-      // START TEST CODE
-      builtTeamFinal.push(response);
-      console.log(builtTeamFinal);
-      // END TEST CODE 
+
+      let newEngineer = new Engineer(response.name,response.id,response.email,response.github);
+
+      builtTeamFinal.push(newEngineer);
+
       if (response.addTeamMember === 'Engineer') {
         addEngineer();
     } else if (response.addTeamMember === 'Intern') {
@@ -130,22 +135,22 @@ const addIntern = () => {
     {
     type: 'input',
     message: 'Please enter the name of the intern being entered!',
-    name: 'intName',
+    name: 'name',
     },
     {
     type: 'input',
     message: 'What is your employee ID?',
-    name: 'intEmployeeID',
+    name: 'id',
     },
     {
     type: 'input',
     message: 'What is your email address?',
-    name: 'intEmailAddress',
+    name: 'email',
     },
     {
     type: 'input',
     message: 'What is your github user name?',
-    name: 'intSchool',
+    name: 'school',
     },
     {
     type: 'list',
@@ -156,10 +161,11 @@ const addIntern = () => {
   ])
   // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
   .then((response) => {
-      // START TEST CODE
-      builtTeamFinal.push(response);
-      console.log(builtTeamFinal);
-      // END TEST CODE 
+
+      let newIntern = new Intern(response.name,response.id,response.email,response.school);
+
+      builtTeamFinal.push(newIntern);
+
       if (response.addTeamMember === 'Engineer') {
         addEngineer();
     } else if (response.addTeamMember === 'Intern') {
