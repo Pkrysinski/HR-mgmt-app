@@ -19,6 +19,7 @@ Link to walkthrough video...
 https://drive.google.com/file/d/1k09hFPOM8cZEwpZR3MKaGx3PyH-7rVWE/view
 
 Link to sample index.html file...
+https://github.com/Pkrysinski/HR-mgmt-app/blob/main/indexNew.html
 
 
 ## User Story
