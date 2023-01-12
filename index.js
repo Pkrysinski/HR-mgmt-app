@@ -66,10 +66,13 @@ const startTeam = () => {
     // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
     .then((response) => {
 
+        // Create new manager class variable and initialize it with the responses
         let newManager = new Manager(response.name,response.id,response.email,response.officeNumber);
 
+        // Push the newManager data to the global builtTeamFinal array
         builtTeamFinal.push(newManager);
             
+        // Prompt user to ask if they want to add an engineer, intern, or save team as-is
         if (response.addTeamMember === 'Engineer') {
           addEngineer();
       } else if (response.addTeamMember === 'Intern') {
@@ -114,10 +117,13 @@ const addEngineer = () => {
   // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
   .then((response) => {
 
+      // Create new engineer class variable and initialize it with the responses
       let newEngineer = new Engineer(response.name,response.id,response.email,response.github);
 
+      // Push the newEngineer data to the global builtTeamFinal array
       builtTeamFinal.push(newEngineer);
 
+      // Prompt user to ask if they want to add an engineer, intern, or save team as-is
       if (response.addTeamMember === 'Engineer') {
         addEngineer();
     } else if (response.addTeamMember === 'Intern') {
@@ -162,10 +168,13 @@ const addIntern = () => {
   // Once user prompts have been completed, ask the user if they're done creating their team, or if they want to add more memebers
   .then((response) => {
 
+      // Create new intern class variable and initialize it with the responses
       let newIntern = new Intern(response.name,response.id,response.email,response.school);
 
+      // Push the newIntern data to the global builtTeamFinal array
       builtTeamFinal.push(newIntern);
 
+      // Prompt user to ask if they want to add an engineer, intern, or save team as-is
       if (response.addTeamMember === 'Engineer') {
         addEngineer();
     } else if (response.addTeamMember === 'Intern') {
@@ -179,12 +188,12 @@ const addIntern = () => {
 
 const finishTeam = () => {
 
-  console.log(builtTeamFinal);
-
+  // Build the HTML page with the data aggregated from Inquirer
   const htmlPageContent = generateHTML(builtTeamFinal);
   fs.writeFile('indexNew.html', htmlPageContent, (err) =>
   err ? console.error(err) : console.log('Success!'));
 
 };
 
+// Initialize the program and start building your team!
 startTeam();
