@@ -188,6 +188,8 @@ const addIntern = () => {
 
 const finishTeam = () => {
 
+  console.log(builtTeamFinal);
+
   // Build the HTML page with the data aggregated from Inquirer
   const htmlPageContent = generateHTML(builtTeamFinal);
   fs.writeFile('indexNew.html', htmlPageContent, (err) =>

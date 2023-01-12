@@ -16,7 +16,10 @@ The purpose of our app is to demonstrate our knowledge of NodeJS, OOP (Object Or
 ## Walkthrough Video
 
 Link to walkthrough video...
-(Google Drive link to Screencastify link goes here)
+https://drive.google.com/file/d/1k09hFPOM8cZEwpZR3MKaGx3PyH-7rVWE/view
+
+Link to sample index.html file...
+
 
 ## User Story
 
