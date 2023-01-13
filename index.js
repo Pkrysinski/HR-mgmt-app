@@ -7,6 +7,8 @@ const Intern = require('./lib/Intern');
 const Employee = require('./lib/Employee');
 
 const builtTeamFinal = [];
+const htmlTeamFinal = [];
+let htmlCards = "";
 
 const generateHTML = (builtTeamFinal) =>
 `<html lang="en">
@@ -24,7 +26,7 @@ const generateHTML = (builtTeamFinal) =>
         <h1>My Team!</h1>
       </div>
       <div className="card-body m-5" id="teamCards">
-        <!-- employee cards here -->
+        ${htmlCards}
       </div>
     </div>
     <script src="./index.js"></script>
@@ -156,7 +158,7 @@ const addIntern = () => {
     },
     {
     type: 'input',
-    message: 'What is your github user name?',
+    message: 'What school are you in?',
     name: 'school',
     },
     {
@@ -199,49 +201,56 @@ let splitEmployees = (builtTeamFinal) => {
   managerArray.push(builtTeamFinal.filter(manager => manager.getRole() === "Manager" ).map( managerArray => createManagerCard(managerArray)));
   engineerArray.push(builtTeamFinal.filter(engineer => engineer.getRole() === "Engineer" ).map( engineerArray => createEngineerCard(engineerArray)));
   internArray.push(builtTeamFinal.filter(intern => intern.getRole() === "Intern" ).map( internArray => createInternCard(internArray)));
+
+  htmlTeamFinal.push(managerArray);
+  htmlTeamFinal.push(engineerArray);
+  htmlTeamFinal.push(internArray);
+
+  return htmlTeamFinal.join("");
+
 };
 
 
 // Loop through the objects in the managerArray, and create a managerCardHTML for each
 let createManagerCard = (Manager) => {
   return     `<div class="card">
-  <h3>${Manager.name}</h3>
+  <h3>Name: ${Manager.name}</h3>
   <p>${Manager.getRole()}</p>
-  <p>${Manager.id}</p>
-  <p>${Manager.email}</p>
-  <p>${Manager.officeNumber}</p>
+  <p>ID: ${Manager.id}</p>
+  <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${Manager.email}" target="_blank" >Email: ${Manager.email}</a></p>
+  <p>Office Number: ${Manager.officeNumber}</p>
 </div>`
 };
 
 // Loop through the objects in the engineerArray, and create a engineerCardHTML for each
 let createEngineerCard = (Engineer) => {
   return    `<div class="card">
-  <h3>${Engineer.name}</h3>
+  <h3>Name: ${Engineer.name}</h3>
   <p>${Engineer.getRole()}</p>
-  <p>${Engineer.id}</p>
-  <p>${Engineer.email}</p>
-  <p>${Engineer.github}</p>
+  <p>ID: ${Engineer.id}</p>
+  <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${Engineer.email}" target="_blank">Email: ${Engineer.email}</a></p>
+  <p><a href="https://github.com/${Engineer.github}" target="_blank">GitHub: ${Engineer.github}</a></p>
 </div>`
 };
 
 // Loop through the objects in the internArray, and create a internCardHTML for each
 let createInternCard = (Intern) => {
   return   `<div class="card">
-  <h3>${Intern.name}</h3>
+  <h3>Name: ${Intern.name}</h3>
   <p>${Intern.getRole()}</p>
-  <p>${Intern.id}</p>
-  <p>${Intern.email}</p>
-  <p>${Intern.school}</p>
+  <p>ID: ${Intern.id}</p>
+  <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${Intern.email}" target="_blank">Email: ${Intern.email}</a></p>
+  <p>School: ${Intern.school}</p>
 </div>`
 };
 // NEW CODE END
 
 const finishTeam = () => {
 
-  splitEmployees(builtTeamFinal);
+  htmlCards = splitEmployees(builtTeamFinal);
 
   // Build the HTML page with the data aggregated from Inquirer
-  const htmlPageContent = generateHTML(builtTeamFinal);
+  const htmlPageContent = generateHTML(htmlCards);
 
   fs.writeFile('indexNew.html', htmlPageContent, (err) =>
   err ? console.error(err) : console.log('Success!'));
