@@ -196,20 +196,20 @@ let splitEmployees = (builtTeamFinal) => {
   let engineerArray = [];
   let internArray = [];
 
-  // Trying to split up the builtTeamFinal object into separate arrays based on role, but getting the following error...
-  // Below is based on what Jacek recommended...
+  // Split the builtTeamFinal array of objects into separated arrays based on role
   managerArray.push(builtTeamFinal.filter(manager => manager.getRole() === "Manager" ).map( managerArray => createManagerCard(managerArray)));
   engineerArray.push(builtTeamFinal.filter(engineer => engineer.getRole() === "Engineer" ).map( engineerArray => createEngineerCard(engineerArray)));
   internArray.push(builtTeamFinal.filter(intern => intern.getRole() === "Intern" ).map( internArray => createInternCard(internArray)));
 
+  // Create the final HTML cards
   htmlTeamFinal.push(managerArray);
   htmlTeamFinal.push(engineerArray);
   htmlTeamFinal.push(internArray);
 
+  // Return the joined HTML cards without any commas
   return htmlTeamFinal.join("");
 
 };
-
 
 // Loop through the objects in the managerArray, and create a managerCardHTML for each
 let createManagerCard = (Manager) => {
