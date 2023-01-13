@@ -243,7 +243,6 @@ let createInternCard = (Intern) => {
   <p>School: ${Intern.school}</p>
 </div>`
 };
-// NEW CODE END
 
 const finishTeam = () => {
 
