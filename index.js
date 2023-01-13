@@ -4,6 +4,7 @@ const fs = require('fs');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const Employee = require('./lib/Employee');
 
 const builtTeamFinal = [];
 
@@ -186,15 +187,64 @@ const addIntern = () => {
   });
 };
 
+// NEW CODE START
+let splitEmployees = (builtTeamFinal) => {
+  // Create new, empty arrays for Managers, Engineers, and Interns
+  let managerArray = [];
+  let engineerArray = [];
+  let internArray = [];
+
+  // Trying to split up the builtTeamFinal object into separate arrays based on role, but getting the following error...
+  // Below is based on what Jacek recommended...
+  managerArray.push(builtTeamFinal.filter(manager => manager.getRole() === "Manager" ).map( managerArray => createManagerCard(managerArray)));
+  engineerArray.push(builtTeamFinal.filter(engineer => engineer.getRole() === "Engineer" ).map( engineerArray => createEngineerCard(engineerArray)));
+  internArray.push(builtTeamFinal.filter(intern => intern.getRole() === "Intern" ).map( internArray => createInternCard(internArray)));
+};
+
+
+// Loop through the objects in the managerArray, and create a managerCardHTML for each
+let createManagerCard = (Manager) => {
+  return     `<div class="card">
+  <h3>${Manager.name}</h3>
+  <p>${Manager.getRole()}</p>
+  <p>${Manager.id}</p>
+  <p>${Manager.email}</p>
+  <p>${Manager.officeNumber}</p>
+</div>`
+};
+
+// Loop through the objects in the engineerArray, and create a engineerCardHTML for each
+let createEngineerCard = (Engineer) => {
+  return    `<div class="card">
+  <h3>${Engineer.name}</h3>
+  <p>${Engineer.getRole()}</p>
+  <p>${Engineer.id}</p>
+  <p>${Engineer.email}</p>
+  <p>${Engineer.github}</p>
+</div>`
+};
+
+// Loop through the objects in the internArray, and create a internCardHTML for each
+let createInternCard = (Intern) => {
+  return   `<div class="card">
+  <h3>${Intern.name}</h3>
+  <p>${Intern.getRole()}</p>
+  <p>${Intern.id}</p>
+  <p>${Intern.email}</p>
+  <p>${Intern.school}</p>
+</div>`
+};
+// NEW CODE END
+
 const finishTeam = () => {
 
-  console.log(builtTeamFinal);
+  splitEmployees(builtTeamFinal);
 
   // Build the HTML page with the data aggregated from Inquirer
   const htmlPageContent = generateHTML(builtTeamFinal);
+
   fs.writeFile('indexNew.html', htmlPageContent, (err) =>
   err ? console.error(err) : console.log('Success!'));
-
 };
 
 // Initialize the program and start building your team!
