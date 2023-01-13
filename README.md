@@ -36,17 +36,17 @@ GIVEN a command-line application that accepts user input...
 - - - - -
 WHEN I am prompted for my team members and their information,
 THEN an HTML file is generated that displays a nicely formatted team roster based on user input.
->IN-PROGRESS
+>Done.  indexNew.html file generated using template literals to populate the employee cards to be displayed on the web page.
 
 - - - - -
 WHEN I click on an email address in the HTML,
 THEN my default email program opens and populates the TO field of the email with the address.
->IN-PROGRESS: This is the last part of the project I'm concerned about (besides tests).  Know I need to loop through the array of objects already created and inject the HTML with their key/value properties based on the objects generated throughout the user prompts.
+>Done.  When clicking an email address, a new tab opens with that email address in the "To" field of the email.
 
 - - - - -
 WHEN I click on the GitHub username,
 THEN that GitHub profile opens in a new tab.
->IN-PROGRESS
+>Done.  When clicking a GitHub user name, that user's GitHub account opens in a new tab.
 
 - - - - -
 WHEN I start the application,
